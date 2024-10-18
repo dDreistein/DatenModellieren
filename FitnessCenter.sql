@@ -52,15 +52,25 @@ VALUES
     ('Franco', 'DellAmore', 5050)
 ;
 
-INSERT INTO Kunden (Vorname, Nachname, Geschlecht, Geburtsdatum, Wohnort, Krankenkasse) VALUES
-('Beatrix', 'Hugentobler', 'w', '19630324', (SELECT OrtId FROM Orte WHERE PLZ='6032'), 'CSS Versicherung'),
-('Viktor', 'Meyer', 'm', '19601218', (SELECT OrtId FROM Orte WHERE PLZ='6012'), 'Group Mutuel'),
-('Yanick', 'Merz', 'm', '19960803', (SELECT OrtId FROM Orte WHERE PLZ='6043'), NULL),
-('Joshua', 'Pfister', 'm', '20010528', (SELECT OrtId FROM Orte WHERE PLZ='6030'), 'Concordia'),
-('Franziska', 'Tobler', 'w', '19750304', (SELECT OrtId FROM Orte WHERE PLZ='6000'), 'CSS Versicherung'),
-('Michele', 'd’Angelo', 'm', '20020630', (SELECT OrtId FROM Orte WHERE PLZ='6003'), 'CSS Versicherung'),
-('Petra', 'Nussbaumer', 'w', '19690825', (SELECT OrtId FROM Orte WHERE PLZ='6016'), 'Group Mutuel'),
-('Admir', 'Smajic', 'm', '19630907', (SELECT OrtId FROM Orte WHERE PLZ='6020'), 'CSS Versicherung'),
-('Lars', 'Ramseier', 'm', '19990125', (SELECT OrtId FROM Orte WHERE Ortname='Gisikon'), NULL),
-('Erna', 'Tschurtschenthaler', 'w', '19891113', (SELECT OrtId FROM Orte WHERE PLZ='6024'), 'CSS Versicherung');
+INSERT INTO Kunden 
+    (Vorname, Nachname, Geschlecht, Geburtsdatum, Wohnort, Krankenkasse) 
+VALUES
+    ('Beatrix', 'Hugentobler', 'w', '19630324', (SELECT OrtId FROM Orte WHERE PLZ='6032'), 'CSS Versicherung'),
+    ('Viktor', 'Meyer', 'm', '19601218', (SELECT OrtId FROM Orte WHERE PLZ='6012'), 'Group Mutuel'),
+    ('Yanick', 'Merz', 'm', '19960803', (SELECT OrtId FROM Orte WHERE PLZ='6043'), NULL),
+    ('Joshua', 'Pfister', 'm', '20010528', (SELECT OrtId FROM Orte WHERE PLZ='6030'), 'Concordia'),
+    ('Franziska', 'Tobler', 'w', '19750304', (SELECT OrtId FROM Orte WHERE PLZ='6000'), 'CSS Versicherung'),
+    ('Michele', 'd’Angelo', 'm', '20020630', (SELECT OrtId FROM Orte WHERE PLZ='6003'), 'CSS Versicherung'),
+    ('Petra', 'Nussbaumer', 'w', '19690825', (SELECT OrtId FROM Orte WHERE PLZ='6016'), 'Group Mutuel'),
+    ('Admir', 'Smajic', 'm', '19630907', (SELECT OrtId FROM Orte WHERE PLZ='6020'), 'CSS Versicherung'),
+    ('Lars', 'Ramseier', 'm', '19990125', (SELECT OrtId FROM Orte WHERE Ortname='Gisikon'), NULL),
+    ('Erna', 'Tschurtschenthaler', 'w', '19891113', (SELECT OrtId FROM Orte WHERE PLZ='6024'), 'CSS Versicherung')
+;
 
+INSERT INTO Betreuung 
+    (Kundennummer, Personalnummer, Notizen, VonKKBezahlt) 
+VALUES
+    (29, 1, 'Yanick möchte vor allem Muskelmasse aufbauen', 0),
+    (36, 3, 'Rehabilitation einer Verletzung, die sie sich bei einem Sportunfall zugezogen hat.', 1),
+    (28, 3, 'Er hat Schwierigkeiten mit der Koordination. Er macht darum Koordinationsübungen.', 0),
+    (28, 2, 'Bandscheibenvorfall, weshalb er einmal in der Woche Rückenübungen macht.', 1)
