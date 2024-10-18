@@ -9,7 +9,7 @@ CREATE TABLE Orte (
     Ortname varchar(50) not null, 
     Kanton char(2), 
     CONSTRAINT pk_Orte PRIMARY KEY(OrtId)
-)
+);
 
 CREATE TABLE Kunden (
     Kundennummer int IDENTITY(1,1) not null,
@@ -20,7 +20,10 @@ CREATE TABLE Kunden (
     Wohnort int, 
     CONSTRAINT pk_Kunden PRIMARY KEY (Kundennummer), 
     CONSTRAINT fk_KundenOrte FOREIGN KEY (Wohnort) REFERENCES Orte(OrtId)
-)
+);
+
+ALTER TABLE Kunden ADD Krankenkasse INT NULL
+ALTER TABLE Kunden ADD CONSTRAINT fk_KundenKrankenkasse FOREIGN KEY (Krankenkasse) REFERENCES Krankenkassen(KrankenkassenID)
 
 CREATE TABLE Mitarbeiter (
     Personalnummer int IDENTITY(1,1) not null,
@@ -34,6 +37,13 @@ CREATE TABLE Betreuung (
     Personalnummer int not null,
     CONSTRAINT fk_BetreuungKunden FOREIGN KEY (Kundennummer) REFERENCES Kunden(Kundennummer),
     CONSTRAINT fk_BetreuungMitarbeiter FOREIGN KEY (Personalnummer) REFERENCES Mitarbeiter(Personalnummer)
-)
+);
 
-ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX)
+ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX);
+
+CREATE TABLE Krankenkassen(
+    KrankenkassenID int IDENTITY(1,1) NOT NULL,
+    KrankenkassenName VARCHAR(30) NOT NULL,
+    CONSTRAINT pk_Krankenkassen PRIMARY KEY (KrankenkassenID)
+);
+
