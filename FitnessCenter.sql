@@ -41,14 +41,7 @@ CREATE TABLE Betreuung (
 ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX);
 ALTER TABLE Betreuung ADD VonKKBezahlt BIT DEFAULT 0;
 
-CREATE TABLE Krankenkassen(
-    KrankenkassenID int IDENTITY(1,1) NOT NULL,
-    KrankenkassenName VARCHAR(30) NOT NULL,
-    CONSTRAINT pk_Krankenkassen PRIMARY KEY (KrankenkassenID)
-);
-
-ALTER TABLE Kunden ADD Krankenkasse INT NULL
-ALTER TABLE Kunden ADD CONSTRAINT fk_KundenKrankenkasse FOREIGN KEY (Krankenkasse) REFERENCES Krankenkassen(KrankenkassenID)
+ALTER TABLE Kunden ADD Krankenkasse VARCHAR(50)
 
 INSERT INTO Mitarbeiter 
     (Vorname, Nachname, Monatslohn) 
@@ -59,4 +52,15 @@ VALUES
     ('Franco', 'DellAmore', 5050)
 ;
 
-SELECT * FROM Mitarbeiter;
+INSERT INTO Kunden (Vorname, Nachname, Geschlecht, Geburtsdatum, Wohnort, Krankenkasse) VALUES
+('Beatrix', 'Hugentobler', 'w', '19630324', (SELECT OrtId FROM Orte WHERE PLZ='6032'), 'CSS Versicherung'),
+('Viktor', 'Meyer', 'm', '19601218', (SELECT OrtId FROM Orte WHERE PLZ='6012'), 'Group Mutuel'),
+('Yanick', 'Merz', 'm', '19960803', (SELECT OrtId FROM Orte WHERE PLZ='6043'), NULL),
+('Joshua', 'Pfister', 'm', '20010528', (SELECT OrtId FROM Orte WHERE PLZ='6030'), 'Concordia'),
+('Franziska', 'Tobler', 'w', '19750304', (SELECT OrtId FROM Orte WHERE PLZ='6000'), 'CSS Versicherung'),
+('Michele', 'd’Angelo', 'm', '20020630', (SELECT OrtId FROM Orte WHERE PLZ='6003'), 'CSS Versicherung'),
+('Petra', 'Nussbaumer', 'w', '19690825', (SELECT OrtId FROM Orte WHERE PLZ='6016'), 'Group Mutuel'),
+('Admir', 'Smajic', 'm', '19630907', (SELECT OrtId FROM Orte WHERE PLZ='6020'), 'CSS Versicherung'),
+('Lars', 'Ramseier', 'm', '19990125', (SELECT OrtId FROM Orte WHERE Ortname='Gisikon'), NULL),
+('Erna', 'Tschurtschenthaler', 'w', '19891113', (SELECT OrtId FROM Orte WHERE PLZ='6024'), 'CSS Versicherung');
+
