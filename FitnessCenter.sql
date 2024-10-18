@@ -30,6 +30,8 @@ CREATE TABLE Mitarbeiter (
     CONSTRAINT pk_Mitarbeiter PRIMARY KEY (Personalnummer)
 );
 
+ALTER TABLE Mitarbeiter ADD Monatslohn INT;
+
 CREATE TABLE Betreuung (
     Kundennummer int not null,
     Personalnummer int not null,
@@ -38,6 +40,7 @@ CREATE TABLE Betreuung (
 );
 
 ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX);
+ALTER TABLE Betreuung ADD VonKKBezahlt BIT DEFAULT 0;
 
 CREATE TABLE Krankenkassen(
     KrankenkassenID int IDENTITY(1,1) NOT NULL,
