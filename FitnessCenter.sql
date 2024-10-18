@@ -22,21 +22,19 @@ CREATE TABLE Kunden (
     CONSTRAINT fk_KundenOrte FOREIGN KEY (Wohnort) REFERENCES Orte(OrtId)
 );
 
-ALTER TABLE Kunden ADD Krankenkasse INT NULL
-ALTER TABLE Kunden ADD CONSTRAINT fk_KundenKrankenkasse FOREIGN KEY (Krankenkasse) REFERENCES Krankenkassen(KrankenkassenID)
 
 CREATE TABLE Mitarbeiter (
     Personalnummer int IDENTITY(1,1) not null,
     Vorname VARCHAR(30) not null,
     Nachname VARCHAR(30) not null,
     CONSTRAINT pk_Mitarbeiter PRIMARY KEY (Personalnummer)
-)
+);
 
 CREATE TABLE Betreuung (
     Kundennummer int not null,
     Personalnummer int not null,
-    CONSTRAINT fk_BetreuungKunden FOREIGN KEY (Kundennummer) REFERENCES Kunden(Kundennummer),
-    CONSTRAINT fk_BetreuungMitarbeiter FOREIGN KEY (Personalnummer) REFERENCES Mitarbeiter(Personalnummer)
+    CONSTRAINT fk_BetreuungKunden FOREIGN KEY (Kundennummer) REFERENCES Kunden(Kundennummer) ON DELETE CASCADE,
+    CONSTRAINT fk_BetreuungMitarbeiter FOREIGN KEY (Personalnummer) REFERENCES Mitarbeiter(Personalnummer) ON DELETE CASCADE
 );
 
 ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX);
@@ -47,3 +45,5 @@ CREATE TABLE Krankenkassen(
     CONSTRAINT pk_Krankenkassen PRIMARY KEY (KrankenkassenID)
 );
 
+ALTER TABLE Kunden ADD Krankenkasse INT NULL
+ALTER TABLE Kunden ADD CONSTRAINT fk_KundenKrankenkasse FOREIGN KEY (Krankenkasse) REFERENCES Krankenkassen(KrankenkassenID)
