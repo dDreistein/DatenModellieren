@@ -36,3 +36,4 @@ CREATE TABLE Betreuung (
     CONSTRAINT fk_BetreuungMitarbeiter FOREIGN KEY (Personalnummer) REFERENCES Mitarbeiter(Personalnummer)
 )
 
+ALTER TABLE Betreuung ADD Notizen VARCHAR(MAX)
