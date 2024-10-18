@@ -22,7 +22,6 @@ CREATE TABLE Kunden (
     CONSTRAINT fk_KundenOrte FOREIGN KEY (Wohnort) REFERENCES Orte(OrtId)
 );
 
-
 CREATE TABLE Mitarbeiter (
     Personalnummer int IDENTITY(1,1) not null,
     Vorname VARCHAR(30) not null,
@@ -50,3 +49,14 @@ CREATE TABLE Krankenkassen(
 
 ALTER TABLE Kunden ADD Krankenkasse INT NULL
 ALTER TABLE Kunden ADD CONSTRAINT fk_KundenKrankenkasse FOREIGN KEY (Krankenkasse) REFERENCES Krankenkassen(KrankenkassenID)
+
+INSERT INTO Mitarbeiter 
+    (Vorname, Nachname, Monatslohn) 
+VALUES
+    ('Rafael', 'Szanislo', 5500),
+    ('Jürg', 'Müller', 5200),
+    ('Markus', 'Meister', 4800),
+    ('Franco', 'DellAmore', 5050)
+;
+
+SELECT * FROM Mitarbeiter;
